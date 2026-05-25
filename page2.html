@@ -6,151 +6,60 @@
 <title>关于我 | 王天心 Tessa</title>
 <link href="https://fonts.googleapis.com/css2?family=Smiley+Sans&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: "Smiley Sans", "得意黑", "Microsoft YaHei", "PingFang SC", sans-serif;
-  background: #fefcf8 url('背景1.png') center/cover no-repeat fixed;
-  color: #1e293b;
-  line-height: 1.7;
-  min-height: 100vh;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; padding: 60px 24px 48px;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:"Smiley Sans","得意黑","Microsoft YaHei","PingFang SC",sans-serif;
+  background:#fefcf8;color:#1e293b;line-height:1.7;
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:60px 24px 48px;
 }
-.bg-orbs {
-  position: fixed; inset: 0; z-index: -2; pointer-events: none; overflow: hidden;
-}
-.orb {
-  position: absolute; border-radius: 50%; filter: blur(140px); opacity: 0.12;
-  animation: float 10s ease-in-out infinite;
-}
-.orb:nth-child(1) { width: 500px; height: 500px; background: #3b82f6; top: -12%; right: -8%; }
-.orb:nth-child(2) { width: 400px; height: 400px; background: #10b981; bottom: -10%; left: -10%; animation-delay: -3s; }
-@keyframes float {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(35px, -25px) scale(1.06); }
-  66% { transform: translate(-25px, 18px) scale(0.94); }
-}
-.back-link {
-  position: fixed; top: 28px; left: 32px; font-size: 0.95rem; font-weight: 700;
-  color: #3b82f6; cursor: pointer; transition: color 0.3s; z-index: 10;
-}
-.back-link:hover { color: #f97316; }
-
-.page-title {
-  font-size: 4rem; font-weight: 800; margin-bottom: 40px; margin-top: 30px;
-  background: linear-gradient(135deg, #2563eb, #f97316);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-}
-
-/* Main layout: photo + SVG lines wrapper */
-.deck-wrapper {
-  position: relative; width: 90vw; max-width: 800px; aspect-ratio: 1;
-  display: flex; align-items: center; justify-content: center;
-}
-
-/* Photo deck */
-.photo-deck-center {
-  width: 309px; aspect-ratio: 1; border-radius: 28px;
-  border: 3px solid rgba(59,130,246,0.2);
-  position: relative; z-index: 2; cursor: pointer; user-select: none;
-  background: linear-gradient(135deg, #dbeafe, #d1fae5, #ffedd5);
-}
-.deck-photo {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  object-fit: cover; border-radius: 28px;
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-}
-.deck-photo.slide-out {
-  transform: translateX(-120%) rotate(-8deg); opacity: 0;
-}
-.deck-photo.stack-0 { transform: translate(0, 0); z-index: 5; }
-.deck-photo.stack-1 { transform: translate(7px, 8px); z-index: 4; }
-.deck-photo.stack-2 { transform: translate(14px, 16px); z-index: 3; }
-.deck-photo.stack-3 { transform: translate(21px, 24px); z-index: 2; }
-.deck-photo.stack-4 { transform: translate(28px, 32px); z-index: 1; }
-.deck-hint {
-  position: absolute; bottom: 8px; left: 0; right: 0; text-align: center; z-index: 6;
-  font-size: 0.75rem; color: rgba(255,255,255,0.8); font-weight: 600;
-  pointer-events: none; text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-}
-
-/* SVG candy lines */
-.candy-lines {
-  position: absolute; inset: 0; z-index: 3; pointer-events: none;
-}
-@keyframes lineWiggle {
-  0%, 100% { d: path("M 0 0 Q 0 0 0 0"); } /* handled inline */
-}
-
-/* HTML labels — positioned absolutely around photo */
-.plabel { position: absolute; z-index: 4; pointer-events: auto; }
-.plabel-title { font-size: clamp(0.7rem, 1.4vw, 0.95rem); font-weight: 700; line-height: 1.4; }
-.plabel-sub  { font-size: clamp(0.6rem, 1.1vw, 0.78rem); font-weight: 600; line-height: 1.4; opacity: 0.85; }
-
-.pl-top-left  { left: 3%; top: 7%; color: #d4849e; }
-.pl-top-right { right: 3%; top: 7%; text-align: right; color: #5ea8b8; cursor: pointer; animation: aiBounce 1.2s ease-in-out infinite; }
-.pl-top-right:hover { transform: scale(1.15); animation: none; }
-@keyframes aiBounce {
-  0%, 100% { transform: translateY(0); }
-  30% { transform: translateY(-14px); }
-  60% { transform: translateY(-4px); }
-}
-.pl-mid-left  { left: 3%; top: 43%; color: #c9a030; }
-.pl-mid-right { right: 3%; top: 43%; text-align: right; color: #c9a030; }
-.pl-bot-left  { left: 3%; bottom: 8%; color: #9b8ec4; }
-.pl-bot-right { right: 3%; bottom: 8%; text-align: right; color: #d89ead; }
-
-@media (max-width: 768px) {
-  .deck-wrapper { width: 95vw; height: auto; aspect-ratio: 1; }
-  .photo-deck-center { width: 55vw; max-width: 250px; }
-  .page-title { font-size: 2.5rem; }
-  .plabel-title { font-size: 0.8rem !important; }
-  .plabel-sub { font-size: 0.65rem !important; }
-}
-@media (max-width: 480px) {
-  .photo-deck-center { width: 70vw; }
-  .plabel-title { font-size: 0.7rem !important; }
-  .plabel-sub { font-size: 0.58rem !important; }
-  .page-title { font-size: 2rem; }
-}
+.bg-orbs{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(140px);opacity:0.12;animation:float 10s ease-in-out infinite}
+.orb:nth-child(1){width:500px;height:500px;background:#3b82f6;top:-12%;right:-8%}
+.orb:nth-child(2){width:400px;height:400px;background:#10b981;bottom:-10%;left:-10%;animation-delay:-3s}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(35px,-25px) scale(1.06)}66%{transform:translate(-25px,18px) scale(0.94)}}
+.back-link{position:fixed;top:28px;left:32px;font-size:0.95rem;font-weight:700;color:#3b82f6;cursor:pointer;transition:color 0.3s;z-index:10}
+.back-link:hover{color:#f97316}
+.page-title{font-size:4rem;font-weight:800;margin-bottom:40px;margin-top:30px;background:linear-gradient(135deg,#2563eb,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.deck-wrapper{position:relative;width:90vw;max-width:800px;aspect-ratio:1;display:flex;align-items:center;justify-content:center}
+.photo-deck-center{width:309px;aspect-ratio:1;border-radius:28px;border:3px solid rgba(59,130,246,0.2);position:relative;z-index:2;cursor:pointer;user-select:none;background:linear-gradient(135deg,#dbeafe,#d1fae5,#ffedd5)}
+.deck-photo{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;border-radius:28px;transition:transform .4s cubic-bezier(.25,.46,.45,.94),opacity .4s ease;box-shadow:0 4px 16px rgba(0,0,0,.06)}
+.deck-photo.slide-out{transform:translateX(-120%) rotate(-8deg);opacity:0}
+.deck-photo.stack-0{transform:translate(0,0);z-index:5}
+.deck-photo.stack-1{transform:translate(7px,8px);z-index:4}
+.deck-photo.stack-2{transform:translate(14px,16px);z-index:3}
+.deck-photo.stack-3{transform:translate(21px,24px);z-index:2}
+.deck-hint{position:absolute;bottom:8px;left:0;right:0;text-align:center;z-index:6;font-size:.75rem;color:rgba(255,255,255,.8);font-weight:600;pointer-events:none;text-shadow:0 1px 3px rgba(0,0,0,.3)}
+.candy-lines{position:absolute;inset:0;z-index:3;pointer-events:none}
+.plabel{position:absolute;z-index:4;pointer-events:auto}
+.plabel-title{font-size:clamp(.7rem,1.4vw,.95rem);font-weight:700;line-height:1.4}
+.plabel-sub{font-size:clamp(.6rem,1.1vw,.78rem);font-weight:600;line-height:1.4;opacity:.85}
+.pl-top-left{left:3%;top:7%;color:#d4849e}
+.pl-top-right{right:3%;top:7%;text-align:right;color:#5ea8b8;cursor:pointer;animation:aiBounce 1.2s ease-in-out infinite}
+.pl-top-right:hover{transform:scale(1.15);animation:none}
+@keyframes aiBounce{0%,100%{transform:translateY(0)}30%{transform:translateY(-14px)}60%{transform:translateY(-4px)}}
+.pl-mid-left{left:3%;top:43%;color:#c9a030}
+.pl-mid-right{right:3%;top:43%;text-align:right;color:#c9a030}
+.pl-bot-left{left:3%;bottom:8%;color:#9b8ec4}
+.pl-bot-right{right:3%;bottom:8%;text-align:right;color:#d89ead}
+@media(max-width:768px){.deck-wrapper{width:95vw}.photo-deck-center{width:55vw;max-width:250px}.page-title{font-size:2.5rem}.plabel-title{font-size:.8rem!important}.plabel-sub{font-size:.65rem!important}}
+@media(max-width:480px){.photo-deck-center{width:70vw}.plabel-title{font-size:.7rem!important}.page-title{font-size:2rem}}
 </style>
 </head>
 <body>
-
-<div class="bg-orbs">
-  <div class="orb"></div>
-  <div class="orb"></div>
-</div>
-
+<div class="bg-orbs"><div class="orb"></div><div class="orb"></div></div>
 <a href="index.html" class="back-link">← 返回首页</a>
-
 <h1 class="page-title">关于我</h1>
-
 <div class="deck-wrapper">
-  <!-- Candy-colored curvy lines radiating around photo -->
-  <svg class="candy-lines" viewBox="-40 -40 680 680" xmlns="http://www.w3.org/2000/svg" style="overflow:visible;">
+  <svg class="candy-lines" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <marker id="arr1" markerWidth="10" markerHeight="8" refX="5" refY="4" orient="auto">
-        <path d="M 0 0 L 10 4 L 0 8 Q 3 4 0 0 Z" fill="#f9a8d4"/>
-      </marker>
-      <marker id="arr2" markerWidth="10" markerHeight="8" refX="5" refY="4" orient="auto">
-        <path d="M 0 0 L 10 4 L 0 8 Q 3 4 0 0 Z" fill="#a5f3fc"/>
-      </marker>
-      <marker id="arr3" markerWidth="10" markerHeight="8" refX="5" refY="4" orient="auto">
-        <path d="M 0 0 L 10 4 L 0 8 Q 3 4 0 0 Z" fill="#fecdd3"/>
-      </marker>
-      <marker id="arr4" markerWidth="10" markerHeight="8" refX="5" refY="4" orient="auto">
-        <path d="M 0 0 L 10 4 L 0 8 Q 3 4 0 0 Z" fill="#c7d2fe"/>
-      </marker>
-      <marker id="arr5" markerWidth="10" markerHeight="8" refX="5" refY="4" orient="auto">
-        <path d="M 0 0 L 10 4 L 0 8 Q 3 4 0 0 Z" fill="#fde68a"/>
-      </marker>
-      <marker id="arr6" markerWidth="10" markerHeight="8" refX="5" refY="4" orient="auto">
-        <path d="M 0 0 L 10 4 L 0 8 Q 3 4 0 0 Z" fill="#fcd34d"/>
-      </marker>
+      <marker id="arr1" markerWidth="10" markerHeight="8" refX="5" refY="4" orient="auto"><path d="M 0 0 L 10 4 L 0 8 Q 3 4 0 0 Z" fill="#f9a8d4"/></marker>
+      <marker id="arr2" markerWidth="10" markerHeight="8" refX="5" refY="4" orient="auto"><path d="M 0 0 L 10 4 L 0 8 Q 3 4 0 0 Z" fill="#a5f3fc"/></marker>
+      <marker id="arr3" markerWidth="10" markerHeight="8" refX="5" refY="4" orient="auto"><path d="M 0 0 L 10 4 L 0 8 Q 3 4 0 0 Z" fill="#fecdd3"/></marker>
+      <marker id="arr4" markerWidth="10" markerHeight="8" refX="5" refY="4" orient="auto"><path d="M 0 0 L 10 4 L 0 8 Q 3 4 0 0 Z" fill="#c7d2fe"/></marker>
+      <marker id="arr5" markerWidth="10" markerHeight="8" refX="5" refY="4" orient="auto"><path d="M 0 0 L 10 4 L 0 8 Q 3 4 0 0 Z" fill="#fde68a"/></marker>
+      <marker id="arr6" markerWidth="10" markerHeight="8" refX="5" refY="4" orient="auto"><path d="M 0 0 L 10 4 L 0 8 Q 3 4 0 0 Z" fill="#fcd34d"/></marker>
     </defs>
-    <!-- 6 lines, no touch photo -->
     <path d="M 110 210 C 70 160, 40 150, 18 95" stroke="#f9a8d4" stroke-width="4.5" fill="none" stroke-linecap="round" marker-end="url(#arr1)"/>
     <path d="M 490 210 C 530 155, 560 135, 582 85" stroke="#a5f3fc" stroke-width="4.5" fill="none" stroke-linecap="round" marker-end="url(#arr2)"/>
     <path d="M 490 300 C 535 290, 555 315, 582 300" stroke="#fde68a" stroke-width="4.5" fill="none" stroke-linecap="round" marker-end="url(#arr5)"/>
@@ -158,32 +67,12 @@ body {
     <path d="M 110 390 C 70 440, 40 465, 18 515" stroke="#c7d2fe" stroke-width="4.5" fill="none" stroke-linecap="round" marker-end="url(#arr4)"/>
     <path d="M 110 300 C 65 290, 45 315, 18 300" stroke="#fcd34d" stroke-width="4.5" fill="none" stroke-linecap="round" marker-end="url(#arr6)"/>
   </svg>
-
-  <!-- HTML labels — not constrained by SVG -->
-  <div class="plabel pl-top-left">
-    <div class="plabel-title">内容创意与策划能力强</div>
-    <div class="plabel-sub">喜欢新鲜事物 · 紧跟年轻潮流趋势</div>
-  </div>
-  <div class="plabel pl-top-right">
-    <div class="plabel-title" style="font-size:1.8rem;" onclick="location.href='ai.html'">ai native</div>
-    <div class="plabel-sub" style="font-size:1.3rem;" onclick="location.href='ai.html'">工具技能全面，会用 AI 提效</div>
-  </div>
-  <div class="plabel pl-mid-left">
-    <div class="plabel-title">眼影美妆重度爱好者</div>
-  </div>
-  <div class="plabel pl-mid-right">
-    <div class="plabel-title">美食探索者</div>
-  </div>
-  <div class="plabel pl-bot-left">
-    <div class="plabel-title">沟通协作高效</div>
-    <div class="plabel-sub">擅长跨部门协同</div>
-  </div>
-  <div class="plabel pl-bot-right">
-    <div class="plabel-title">性格开朗外向</div>
-    <div class="plabel-sub">团队氛围适配度高</div>
-  </div>
-
-  <!-- Photo deck -->
+  <div class="plabel pl-top-left"><div class="plabel-title">内容创意与策划能力强</div><div class="plabel-sub">喜欢新鲜事物 · 紧跟年轻潮流趋势</div></div>
+  <div class="plabel pl-top-right"><div class="plabel-title" style="font-size:1.8rem" onclick="location.href='ai.html'">ai native</div><div class="plabel-sub" style="font-size:1.3rem" onclick="location.href='ai.html'">工具技能全面，会用 AI 提效</div></div>
+  <div class="plabel pl-mid-left"><div class="plabel-title">眼影美妆重度爱好者</div></div>
+  <div class="plabel pl-mid-right"><div class="plabel-title">美食探索者</div></div>
+  <div class="plabel pl-bot-left"><div class="plabel-title">沟通协作高效</div><div class="plabel-sub">擅长跨部门协同</div></div>
+  <div class="plabel pl-bot-right"><div class="plabel-title">性格开朗外向</div><div class="plabel-sub">团队氛围适配度高</div></div>
   <div class="photo-deck-center" id="photoDeck">
     <img class="deck-photo" src="个人照片.jpg" alt="王天心 Tessa">
     <img class="deck-photo" src="食物照片.jpg" alt="美食">
@@ -192,51 +81,8 @@ body {
     <div class="deck-hint">点击翻看 ↻</div>
   </div>
 </div>
-
 <script>
-(function() {
-  const deck = document.getElementById('photoDeck');
-  const photos = deck.querySelectorAll('.deck-photo');
-  const total = photos.length;
-  let current = 0;
-
-  function applyStack() {
-    for (let i = 0; i < total; i++) {
-      let stackPos = (i - current + total) % total;
-      if (stackPos === 0) {
-        photos[i].className = 'deck-photo stack-0';
-      } else if (stackPos === 1) {
-        photos[i].className = 'deck-photo stack-1';
-      } else if (stackPos === 2) {
-        photos[i].className = 'deck-photo stack-2';
-      } else if (stackPos === 3) {
-        photos[i].className = 'deck-photo stack-3';
-      } else {
-        photos[i].className = 'deck-photo stack-4';
-      }
-    }
-  }
-
-  function slideNext() {
-    const leaving = photos[current];
-    leaving.classList.add('slide-out');
-    current = (current + 1) % total;
-    applyStack();
-    setTimeout(() => {
-      leaving.classList.remove('slide-out');
-      leaving.className = 'deck-photo stack-' + (total - 1);
-    }, 400);
-  }
-
-  deck.addEventListener('click', () => slideNext());
-  let touchX = 0;
-  deck.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, {passive: true});
-  deck.addEventListener('touchend', (e) => {
-    if (e.changedTouches[0].clientX - touchX < -30) slideNext();
-  });
-
-  applyStack();
-})();
+(function(){var d=document.getElementById('photoDeck'),p=d.querySelectorAll('.deck-photo'),t=p.length,c=0;function a(){for(var i=0;i<t;i++){var s=(i-c+t)%t;p[i].className='deck-photo stack-'+(s<4?s:3)}}function n(){var l=p[c];l.classList.add('slide-out');c=(c+1)%t;a();setTimeout(function(){l.classList.remove('slide-out');l.className='deck-photo stack-'+(t-1)},400)}d.addEventListener('click',n);var x=0;d.addEventListener('touchstart',function(e){x=e.touches[0].clientX},{passive:true});d.addEventListener('touchend',function(e){if(e.changedTouches[0].clientX-x<-30)n()});a()})();
 </script>
 </body>
 </html>
