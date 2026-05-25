@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我的AI创造 | 王天心 Tessa</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:"Smiley Sans","得意黑","Microsoft YaHei","PingFang SC",sans-serif;
+  min-height:100vh;
+}
+/* Carousel section */
+.carousel-section{
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:#1a1a1a;perspective:1200px;padding-top:100px;position:relative;
+}
+.carousel-title{
+  font-size:2rem;font-weight:800;margin:0;
+  background:linear-gradient(135deg,#fff,#f0d68a);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  z-index:10;position:absolute;top:40px;
+}
+.carousel-nav{
+  display:flex;align-items:center;gap:0;z-index:10;
+}
+.carousel-nav .carousel-arrow:first-child{margin-right:400px;}
+.carousel-nav .carousel-arrow:last-child{margin-left:400px;}
+.carousel-arrow{
+  width:50px;height:50px;border-radius:50%;
+  background:rgba(255,255,255,0.12);border:2px solid rgba(255,255,255,0.25);
+  color:#fff;font-size:1.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background 0.3s,border-color 0.3s;user-select:none;
+  z-index:20;position:relative;
+}
+.carousel-arrow:hover{background:rgba(255,255,255,0.25);border-color:rgba(255,255,255,0.5);}
+.carousel-stage{
+  width:380px;height:380px;position:relative;
+  transform-style:preserve-3d;
+  animation:carouselSpin 30s linear infinite;
+  cursor:grab;
+}
+.carousel-stage:active{cursor:grabbing;}
+.carousel-stage:hover{animation-play-state:paused;}
+.stage-click-zone{
+  position:absolute;width:380px;height:380px;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  margin-top:50px;
+  z-index:200;cursor:pointer;
+}
+.carousel-card:hover{filter:brightness(1.1);transition:filter 0.3s;z-index:99;}
+/* Image lightbox */
+.img-lightbox{position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;visibility:hidden;opacity:0;transition:opacity 0.3s;}
+.img-lightbox.open{visibility:visible;opacity:1;}
+.img-lightbox img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:22px;}
+.img-lightbox .lb-close{position:absolute;top:20px;right:30px;color:#fff;font-size:2rem;cursor:pointer;background:none;border:none;}
+@keyframes carouselSpin{from{transform:rotateY(0deg)}to{transform:rotateY(360deg)}}
+.carousel-card{
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  border-radius:22px;overflow:hidden;
+  box-shadow:0 8px 32px rgba(0,0,0,0.15);
+  backface-visibility:hidden;
+}
+.carousel-card img{width:100%;height:100%;object-fit:contain;}
+.carousel-card:nth-child(1){transform:rotateY(0deg) translateZ(750px);}
+.carousel-card:nth-child(2){transform:rotateY(30deg) translateZ(750px);}
+.carousel-card:nth-child(3){transform:rotateY(60deg) translateZ(750px);}
+.carousel-card:nth-child(4){transform:rotateY(90deg) translateZ(750px);}
+.carousel-card:nth-child(5){transform:rotateY(120deg) translateZ(750px);}
+.carousel-card:nth-child(6){transform:rotateY(150deg) translateZ(750px);}
+.carousel-card:nth-child(7){transform:rotateY(180deg) translateZ(750px);}
+.carousel-card:nth-child(8){transform:rotateY(210deg) translateZ(750px);}
+.carousel-card:nth-child(9){transform:rotateY(240deg) translateZ(750px);}
+.carousel-card:nth-child(10){transform:rotateY(270deg) translateZ(750px);}
+.carousel-card:nth-child(11){transform:rotateY(300deg) translateZ(750px);}
+.carousel-card:nth-child(12){transform:rotateY(330deg) translateZ(750px);}
+@media(max-width:768px){
+  .carousel-nav .carousel-arrow:first-child{margin-right:40px;}
+  .carousel-nav .carousel-arrow:last-child{margin-left:40px;}
+}
+@media(max-width:600px){
+  .carousel-stage{width:220px;height:220px;}
+  .carousel-card:nth-child(1){transform:rotateY(0deg) translateZ(430px);}
+  .carousel-card:nth-child(2){transform:rotateY(30deg) translateZ(430px);}
+  .carousel-card:nth-child(3){transform:rotateY(60deg) translateZ(430px);}
+  .carousel-card:nth-child(4){transform:rotateY(90deg) translateZ(430px);}
+  .carousel-card:nth-child(5){transform:rotateY(120deg) translateZ(430px);}
+  .carousel-card:nth-child(6){transform:rotateY(150deg) translateZ(430px);}
+  .carousel-card:nth-child(7){transform:rotateY(180deg) translateZ(430px);}
+  .carousel-card:nth-child(8){transform:rotateY(210deg) translateZ(430px);}
+  .carousel-card:nth-child(9){transform:rotateY(240deg) translateZ(430px);}
+  .carousel-card:nth-child(10){transform:rotateY(270deg) translateZ(430px);}
+  .carousel-card:nth-child(11){transform:rotateY(300deg) translateZ(430px);}
+  .carousel-card:nth-child(12){transform:rotateY(330deg) translateZ(430px);}
+  .carousel-title{font-size:1.4rem;top:20px;}
+  .carousel-arrow{width:36px;height:36px;font-size:1.1rem;}
+  .stage-click-zone{width:280px;height:280px;}
+  .carousel-nav .carousel-arrow:first-child{margin-right:20px;}
+  .carousel-nav .carousel-arrow:last-child{margin-left:20px;}
+}
+
+.ai-page{
+  min-height:100vh;position:relative;overflow:hidden;
+  background:url('我的ai.png') center/cover no-repeat;
+}
+.ai-hitbox{
+  position:absolute;cursor:pointer;z-index:5;
+  border:2px dashed rgba(255,255,255,0.3);border-radius:8px;
+  transition:background 0.3s,border-color 0.3s;
+}
+.ai-hitbox:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.6);}
+.video-modal{
+  position:fixed;inset:0;z-index:999;
+  background:rgba(0,0,0,0.85);display:none;
+  align-items:center;justify-content:center;
+}
+.video-modal.open{display:flex;}
+.video-close{
+  position:absolute;top:20px;right:30px;z-index:1000;
+  background:none;border:none;color:#fff;font-size:2rem;
+  cursor:pointer;font-weight:700;
+}
+.back-link{
+  position:fixed;top:28px;left:32px;font-size:0.95rem;font-weight:700;
+  color:#fff;cursor:pointer;z-index:10;text-shadow:0 1px 3px rgba(0,0,0,0.5);
+}
+.back-link:hover{color:#f97316;}
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-link">← 返回首页</a>
+
+<div class="ai-page">
+  <div class="ai-hitbox" style="left:5%;top:15%;right:70%;bottom:55%;" onclick="openVideo('芝士视频.mp4')"></div>
+  <div class="ai-hitbox" style="left:5%;top:55%;right:70%;bottom:15%;" onclick="openVideo('5月22日.mp4')"></div>
+</div>
+
+<div class="video-modal" id="videoModal" onclick="closeVideo()">
+  <button class="video-close" onclick="closeVideo()">✕</button>
+  <video id="videoPlayer" controls style="max-width:90vw;max-height:85vh;border-radius:12px;"></video>
+</div>
+
+<script>
+function openVideo(src){
+  document.getElementById('videoPlayer').src=src;
+  document.getElementById('videoModal').classList.add('open');
+  document.getElementById('videoPlayer').play();
+}
+function closeVideo(){
+  document.getElementById('videoModal').classList.remove('open');
+  var v=document.getElementById('videoPlayer');
+  v.pause();v.src='';
+}
+
+// Carousel drag control
+(function(){
+  var stage=document.querySelector('.carousel-stage');
+  var angle=0, dragging=false, lastX=0;
+
+  function update(){ stage.style.transform='rotateY('+angle+'deg)'; }
+
+  stage.addEventListener('mousedown',function(e){
+    if(e.target.closest('.carousel-card, .carousel-card img, .stage-click-zone'))return;
+    dragging=true; lastX=e.clientX;
+    carouselAuto=false;
+    stage.style.animationPlayState='paused';
+  });
+  window.addEventListener('mousemove',function(e){
+    if(!dragging)return;
+    var dx=e.clientX-lastX; lastX=e.clientX;
+    angle+=dx*0.4; carouselAngle=((angle%360)+360)%360; update();
+  });
+  window.addEventListener('mouseup',function(){
+    if(!dragging)return;
+    dragging=false; carouselAuto=true;
+    stage.style.animation='none';
+    update();
+    void stage.offsetWidth;
+    stage.style.animation='carouselSpin 30s linear infinite';
+    stage.style.animationPlayState='running';
+  });
+
+  stage.addEventListener('touchstart',function(e){
+    dragging=true; lastX=e.touches[0].clientX;
+    stage.style.animationPlayState='paused';
+  });
+  stage.addEventListener('touchmove',function(e){
+    if(!dragging)return;
+    var dx=e.touches[0].clientX-lastX; lastX=e.touches[0].clientX;
+    angle+=dx*0.4; carouselAngle=((angle%360)+360)%360; update();
+  });
+  stage.addEventListener('touchend',function(){
+    if(!dragging)return;
+    dragging=false;
+    stage.style.animation='none';
+    update();
+    void stage.offsetWidth;
+    stage.style.animation='carouselSpin 30s linear infinite';
+    stage.style.animationPlayState='running';
+  });
+})();
+var carouselTimer;
+function rotateCarousel(deg){
+  var s=document.querySelector('.carousel-stage');
+  clearTimeout(carouselTimer); carouselAuto=false;
+  s.style.animation='none';
+  carouselAngle=((carouselAngle+deg)%360+360)%360;
+  s.style.transform='rotateY('+carouselAngle+'deg)';
+  carouselTimer=setTimeout(function(){
+    s.style.animation='carouselSpin 30s linear infinite'; carouselAuto=true;
+  },3000);
+}
+</script>
+
+<div class="carousel-section">
+  <h1 class="carousel-title">AI照片集</h1>
+  <div class="carousel-nav">
+    <div class="carousel-arrow" onclick="rotateCarousel(-30)">◀</div>
+    <div class="carousel-stage" id="carouselStage">
+      <div class="carousel-card" data-src="图片1.jpg"><img src="图片1.jpg" alt=""></div>
+      <div class="carousel-card" data-src="图片2.png"><img src="图片2.png" alt=""></div>
+      <div class="carousel-card" data-src="图片3.jpg"><img src="图片3.jpg" alt=""></div>
+      <div class="carousel-card" data-src="图片4.png"><img src="图片4.png" alt=""></div>
+      <div class="carousel-card" data-src="图片5.jpg"><img src="图片5.jpg" alt=""></div>
+      <div class="carousel-card" data-src="图片6.jpg"><img src="图片6.jpg" alt=""></div>
+      <div class="carousel-card" data-src="图片7.png"><img src="图片7.png" alt=""></div>
+      <div class="carousel-card" data-src="图片8.png"><img src="图片8.png" alt=""></div>
+      <div class="carousel-card" data-src="图片9.png"><img src="图片9.png" alt=""></div>
+      <div class="carousel-card" data-src="图片10.png"><img src="图片10.png" alt=""></div>
+      <div class="carousel-card" data-src="冰希黎.png"><img src="冰希黎.png" alt=""></div>
+      <div class="carousel-card" data-src="牛肉饭.png"><img src="牛肉饭.png" alt=""></div>
+    </div>
+    <div class="carousel-arrow" onclick="rotateCarousel(30)">▶</div>
+  </div>
+  <div class="stage-click-zone" onclick="showLightboxForFront()"></div>
+</div>
+
+<div class="img-lightbox" id="imgLightbox" onclick="this.classList.remove('open')">
+  <button class="lb-close" onclick="document.getElementById('imgLightbox').classList.remove('open')">✕</button>
+  <img id="lbImg" src="" alt="">
+</div>
+
+<script>
+var lb=document.getElementById('imgLightbox'), lbi=document.getElementById('lbImg');
+document.querySelector('.carousel-section').addEventListener('click',function(e){
+  var card=e.target.closest('.carousel-card');
+  if(!card)return;
+  e.stopPropagation();
+  lbi.src=card.getAttribute('data-src');
+  lb.classList.add('open');
+});
+lb.addEventListener('click',function(e){if(e.target===this)lb.classList.remove('open');});
+// Track carousel rotation manually
+var carouselAngle=0, carouselAuto=true, lastTime=0;
+function trackCarousel(timestamp){
+  if(!lastTime)lastTime=timestamp;
+  var dt=Math.min(timestamp-lastTime,100);
+  lastTime=timestamp;
+  if(carouselAuto){ carouselAngle+=(dt/1000)*(360/30); }
+  carouselAngle=((carouselAngle%360)+360)%360;
+  requestAnimationFrame(trackCarousel);
+}
+requestAnimationFrame(trackCarousel);
+
+function showLightboxForFront(){
+  var a=(((-carouselAngle)%360)+360)%360;
+  var idx=Math.round(a/30)%12;
+  if(idx===12)idx=0;
+  var card=document.querySelectorAll('.carousel-card')[idx];
+  if(card){ lbi.src=card.getAttribute('data-src'); lb.classList.add('open'); }
+}
+</script>
+
+</body>
+</html>

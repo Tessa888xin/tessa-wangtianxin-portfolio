@@ -1,0 +1,11 @@
+<!DOCTYPE html><html><head><style>
+body{background:#111;display:flex;align-items:center;justify-content:center;height:100vh;margin:0}
+.btn{background:#fff;padding:20px 40px;cursor:pointer;font-size:1.5rem}
+.lb{position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;visibility:hidden;opacity:0;transition:opacity 0.3s;z-index:9999}
+.lb.open{visibility:visible;opacity:1}
+.lb img{max-width:90vw;max-height:90vh}
+.lb-close{position:absolute;top:20px;right:30px;color:#fff;font-size:2rem;cursor:pointer;background:none;border:none}
+</style></head><body>
+<div class="btn" onclick="document.getElementById('lb').classList.add('open');document.getElementById('lbi').src='图片1.jpg'">点击测试灯箱</div>
+<div class="lb" id="lb" onclick="this.classList.remove('open')"><div class="lb-close" onclick="document.getElementById('lb').classList.remove('open')">✕</div><img id="lbi" src="" alt=""></div>
+</body></html>

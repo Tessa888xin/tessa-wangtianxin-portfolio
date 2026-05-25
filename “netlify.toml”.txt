@@ -1,0 +1,4 @@
+
+[images]
+provider = "netlify"
+remote_images = ["*"]

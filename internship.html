@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>实习详情 | 王天心 Tessa</title>
+<link href="https://fonts.googleapis.com/css2?family=Smiley+Sans&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Smiley Sans","得意黑","Microsoft YaHei","PingFang SC",sans-serif;background:#fefcf8 url('背景1.png') center/cover no-repeat fixed;color:#1e293b;line-height:1.7;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:60px 24px 80px}
+.bg-orbs{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(140px);opacity:0.13;animation:float 10s ease-in-out infinite}
+.orb:nth-child(1){width:500px;height:500px;background:#3b82f6;top:-12%;right:-8%}
+.orb:nth-child(2){width:400px;height:400px;background:#10b981;bottom:-10%;left:-10%;animation-delay:-3s}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(35px,-25px) scale(1.06)}66%{transform:translate(-25px,18px) scale(0.94)}}
+.back-link{position:fixed;top:28px;left:32px;font-size:0.95rem;font-weight:700;color:#3b82f6;cursor:pointer;transition:color 0.3s;z-index:10}
+.back-link:hover{color:#f97316}
+.container{max-width:720px;width:100%;margin-top:30px}
+.hero-icon{font-size:4rem;text-align:center;margin-bottom:12px}
+h1{font-size:2rem;font-weight:900;text-align:center;margin-bottom:16px;line-height:1.3}
+.gradient{background:linear-gradient(135deg,#2563eb,#10b981,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.date-badge{display:inline-block;padding:8px 20px;border-radius:24px;font-size:0.85rem;font-weight:700;margin-bottom:24px;text-align:center;width:fit-content;margin-left:auto;margin-right:auto;display:block}
+.company-name{text-align:center;font-size:1.1rem;font-weight:700;color:#f97316;margin-bottom:28px}
+.content-block{background:#fff;border:1.5px solid rgba(0,0,0,0.05);border-radius:18px;padding:28px;margin-bottom:16px}
+.content-block h3{font-size:1rem;font-weight:800;margin-bottom:10px;color:#1e293b}
+.content-block ul{color:#4b5563;font-size:0.92rem}
+.content-block ul li{position:relative;padding-left:16px;margin-bottom:8px}
+.content-block ul li::before{content:'▸';position:absolute;left:0;color:#10b981;font-weight:700}
+
+/* Theme variations */
+.theme-blue .date-badge{background:#eff6ff;color:#2563eb}
+.theme-pink .date-badge{background:#fdf2f8;color:#be185d}
+.theme-green .date-badge{background:#ecfdf5;color:#065f46}
+.theme-yellow .date-badge{background:#fffbeb;color:#b45309}
+@media(max-width:600px){
+  body{padding:40px 16px 60px}
+  .container{margin-top:20px}
+  h1{font-size:1.5rem}
+  .content-block{padding:20px}
+  .hero-icon{font-size:3rem}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-orbs"><div class="orb"></div><div class="orb"></div></div>
+
+<a href="index.html" class="back-link" id="backLink">← 返回首页</a>
+
+<div class="container" id="content"></div>
+
+<script>
+const data = {
+  crossborder: {
+    theme: 'blue',
+    icon: '🌍🛒',
+    title: '跨境电商运营',
+    date: '2025.06 — 2025.09',
+    company: '上海兰亭集势跨境电商公司',
+    sections: [
+      { title: '数据分析与报告', items: [
+        '每日监控核心功能数据看板，使用 Excel 透视表、VLOOKUP 等进行数据分析',
+        '对容量预测和仓储利用率分析，进行数据查询分析，热销和滞销产品成因分析',
+        '在亚马逊网站和其他网络社交媒体进行横向竞品分析，为库存管理和到货情况提供数据支持'
+      ]},
+      { title: '跨部门沟通', items: [
+        '作为运营方代表，与美工设计团队就活动页面需求进行沟通',
+        '与仓库物流就商品跨境物流等需求进行沟通，确保需求传达准确无误'
+      ]},
+      { title: '用户反馈处理', items: [
+        '用英语回答顾客邮件，每天解决顾客的需求和痛点',
+        '解答关于产品、订单、物流咨询等问题，保障顾客满意度',
+        '及时发货、补发产品，处理售后问题'
+      ]},
+      { title: '促销活动与账户安全', items: [
+        '通过数据分析筛选滞销产品，通过奥莱等方式制定促销方案',
+        '库存冗余率降低 10%',
+        '凭借数据分析与文案能力，通过高效撰写行动计划书，快速申诉成功，确保核心账户安全'
+      ]}
+    ]
+  },
+  film: {
+    theme: 'pink',
+    icon: '🌟',
+    title: '影视公司整合营销',
+    date: '2025.09 — 2025.12',
+    company: '上海路画影视',
+    sections: [
+      { title: 'IP 整合营销策划与落地', items: [
+        '参与品牌自营二次元门店 gugugugu 及 SEGA/IG 代运营 IP 整合营销策划',
+        '围绕间谍过家家、柯南 M1 等热门 IP，结合市场调研输出产品营销与活动创意方向',
+        '协助整理主推品信息表与营销监修排期表，保障 IP 营销策划落地节奏'
+      ]},
+      { title: '线上创意内容运营', items: [
+        '结合节日热点与实时热梗，为 IP 产品原创撰写创意 SNS 文案 40+ 条',
+        '完成实物拍摄、视频剪辑、PS 修图，打造线上一体化创意内容矩阵',
+        '提升 IP 产品线上曝光与传播'
+      ]},
+      { title: '线下活动全案执行', items: [
+        '协助落地「一日店长」「店铺打卡」「快闪活动」等线下营销活动',
+        '跟进从企划、创意设计到落地执行的全流程',
+        '对接设计团队完成线下物料创意需求提报、画面产出与监修，保障线下活动顺利落地'
+      ]},
+      { title: '社媒数据复盘与优化', items: [
+        '每日监控 3 个官方社媒账号数据，实时跟踪新品宣发内容的阅读、互动、粉丝活跃度等指标',
+        '按项目周期输出数据复盘报告，优化内容与活动策略',
+        '账号互动率提升 25%+，粉丝活跃度提升 30%+',
+        '维系用户粘性，整理和分析售卖后的 UGC 内容'
+      ]},
+      { title: '创意物料与跨部门协同', items: [
+        '跨部门对接设计师团队，输出创意参考并下达 brief',
+        '负责线下门店物料与社媒 KV 图的设计需求对接、画面产出与全程监修',
+        '协助管理线下零售特典开发，联动设计、运营、执行等多部门，严格把控项目时间节点'
+      ]}
+    ]
+  },
+  beauty: {
+    theme: 'green',
+    icon: '🫒',
+    title: '美妆公司数字营销',
+    date: '2026.01 — 2026.03',
+    company: '上海缙嘉集团 · 安修泽',
+    sections: [
+      { title: '达人资源搭建', items: [
+        '结合美妆品牌定位与营销目标，筛选小红书 / 抖音美垂泛垂达人',
+        '搭建素人-尾部-腰部阶梯式合作达人池，实现达人与品牌受众高度匹配',
+        '为后续内容种草奠定达人合作基础'
+      ]},
+      { title: '内容创意把控', items: [
+        '独立审核优化 30+ 份达人合作脚本、口播文案及图文初稿',
+        '结合品牌调性优化内容创意与话术表达，把控卖点突出度与宣传合规性',
+        '规避风险的同时提升内容优质率超 40%'
+      ]},
+      { title: '爆款内容拆解与策略输出', items: [
+        '深度拆解 50+ 条美妆护肤爆款短视频 / 笔记',
+        '分析转化逻辑并提炼可复用的方法论',
+        '为品牌线上营销内容策划提供创意方向，达人合作脚本提供方向参考',
+        '提升内容种草效率 30%+'
+      ]},
+      { title: '营销数据与合作跟进', items: [
+        '实时跟进达人合作进度与内容发布数据，进行投流控评',
+        '协助完成营销效果初步复盘，输出数据化优化建议',
+        '支撑后续营销策略调整'
+      ]}
+    ]
+  },
+  food: {
+    theme: 'yellow',
+    icon: '🧀',
+    title: '食品公司市场营销',
+    date: '2026.03 — 2026.06',
+    company: '吉酪坊',
+    sections: [
+      { title: '小红书内容策划', items: [
+        '为品牌旗下珀瑞、萨酡、餐铃铛三条产品线策划小红书内容',
+        '产出探店脚本与图文笔记，制定月度内容日历',
+        '从定位到执行全程参与品牌社媒内容规划'
+      ]},
+      { title: 'B 端客户内容交付', items: [
+        '服务 Shake Shack、必胜客、Ole 等知名连锁餐饮及精品超市客户',
+        '深度参与 B 端内容交付，根据客户用芝士场景定制种草内容',
+        '积累了大量专业食品摄影素材'
+      ]},
+      { title: '创意 Brief 与竞品分析', items: [
+        '输出多份小红书封面及 KV 创意 Brief，从企划到视觉把控全程跟进',
+        '撰写竞品分析报告，基于对竞品和市场的观察输出洞察',
+        '参与构思互动赠品方案，帮助品牌提升用户粘性'
+      ]}
+    ]
+  }
+};
+
+const params = new URLSearchParams(window.location.search);
+const type = params.get('t') || 'crossborder';
+const d = data[type];
+const isFood = type === 'food';
+document.body.className = 'theme-' + d.theme;
+document.getElementById('backLink').href = 'index.html#' + (isFood ? '' : 'experience');
+
+const html = `
+  <div class="hero-icon">${d.icon}</div>
+  <h1>${d.title.split('<br>').join('</h1><h1>')}</h1>
+  <span class="date-badge">${d.date}</span>
+  <p class="company-name">${d.company}</p>
+  ${d.sections.map(s => `
+    <div class="content-block">
+      <h3>${s.title}</h3>
+      <ul>${s.items.map(i => `<li>${i}</li>`).join('')}</ul>
+    </div>
+  `).join('')}
+`;
+
+document.getElementById('content').innerHTML = html;
+</script>
+</body>
+</html>
